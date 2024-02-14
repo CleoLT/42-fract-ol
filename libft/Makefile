@@ -6,7 +6,7 @@
 #    By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/13 16:02:29 by ale-tron          #+#    #+#              #
-#    Updated: 2024/02/08 18:42:47 by ale-tron         ###   ########.fr        #
+#    Updated: 2024/02/14 19:32:51 by ale-tron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ MEM_DIR	= mem/
 PUT_DIR	= put/
 TO_DIR	= to/
 GNL_DIR	= gnl/
+PRINTF_DIR = printf/
 
 # ═══ SOURCES ═════════════════════════════════════════════════════════════════#
 IS_FILES	= ft_isalpha ft_isalnum ft_isascii ft_isdigit ft_isprint
@@ -43,6 +44,7 @@ MEM_FILES	= ft_bzero ft_memset ft_memcpy ft_memmove ft_memchr ft_memcmp ft_callo
 PUT_FILES	= ft_putchar_fd ft_putstr_fd ft_putendl_fd ft_putnbr_fd
 TO_FILES	= ft_tolower ft_toupper ft_atoi ft_itoa
 GNL_FILES	= get_next_line get_next_line_utils
+PRINTF_FILES = ft_print_char ft_print_hex ft_print_int ft_print_pointer ft_print_string ft_print_unsigned ft_printf
 
 SRC_FILES+=$(addprefix $(IS_DIR),$(IS_FILES))
 SRC_FILES+=$(addprefix $(STR_DIR),$(STR_FILES))
@@ -50,6 +52,7 @@ SRC_FILES+=$(addprefix $(MEM_DIR),$(MEM_FILES))
 SRC_FILES+=$(addprefix $(PUT_DIR),$(PUT_FILES))
 SRC_FILES+=$(addprefix $(TO_DIR),$(TO_FILES))
 SRC_FILES+=$(addprefix $(GNL_DIR),$(GNL_FILES))
+SRC_FILES+=$(addprefix $(PRINTF_DIR),$(PRINTF_FILES))
 
 SRCS = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))

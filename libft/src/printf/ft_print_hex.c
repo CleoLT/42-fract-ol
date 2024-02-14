@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract-ol.h                                         :+:      :+:    :+:   */
+/*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 15:28:10 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/14 19:45:20 by ale-tron         ###   ########.fr       */
+/*   Created: 2023/10/26 11:52:00 by ale-tron          #+#    #+#             */
+/*   Updated: 2024/02/14 19:39:06 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "../../inc/ft_printf.h"
 
-# include "../mlx/mlx.h"
-# include "../libft/inc/libft.h"
-# include "../libft/inc/ft_printf.h"
-# include <math.h>
-
-typedef struct s_fractol
+int	ft_print_hex(unsigned int num, const char format)
 {
-	
-}	t_fractol;
+	int		count;
+	char	hex;
+	int		print;
 
-
-#endif
+	count = 0;
+	if (num >= 16)
+		count = ft_print_hex(num / 16, format);
+	if (count == -1)
+		return (-1);
+	if (num % 16 > 9)
+		hex = num % 16 - 10 + format - 23;
+	if (num % 16 < 10)
+		hex = num % 16 + '0';
+	print = ft_print_char(hex);
+	return (count + print);
+}

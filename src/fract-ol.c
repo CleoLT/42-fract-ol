@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:33:26 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/14 18:13:31 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:47:19 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fract-ol.h"
@@ -24,8 +24,19 @@ int deal_key()
 }
 
 
-int main()
+int	main(int argc, char **argv)
 {
+//	t_fractol	*fract;
+
+	argv[1] = "hola";
+	if (argc != 2)
+	{
+		ft_printf("usa estos parametros ejemplos");
+	//	get_next_line(0);
+		exit(0);
+	}
+	
+	
 	void *mlx_ptr;
 	void *win_ptr;
 

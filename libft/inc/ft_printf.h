@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract-ol.h                                         :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 15:28:10 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/14 19:45:20 by ale-tron         ###   ########.fr       */
+/*   Created: 2023/10/26 11:56:01 by ale-tron          #+#    #+#             */
+/*   Updated: 2024/02/14 19:37:52 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef FT_PRINTF_H
+# include <unistd.h>
+# include <stdarg.h>
+# include <limits.h>
+# include "./libft.h"
+# define FT_PRINTF_H
 
-# include "../mlx/mlx.h"
-# include "../libft/inc/libft.h"
-# include "../libft/inc/ft_printf.h"
-# include <math.h>
-
-typedef struct s_fractol
-{
-	
-}	t_fractol;
-
+int	ft_printf(const char *str, ...);	
+int	ft_print_char(int c);
+int	ft_print_string(const char *src);
+int	ft_print_hex(unsigned int num, const char format);
+int	ft_print_pointer(unsigned long address);
+int	ft_print_int(int nb);
+int	ft_print_unsigned(unsigned int nb);
 
 #endif
