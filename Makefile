@@ -6,7 +6,7 @@
 #    By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/08 12:38:16 by ale-tron          #+#    #+#              #
-#    Updated: 2024/02/14 18:49:26 by ale-tron         ###   ########.fr        #
+#    Updated: 2024/02/15 12:33:25 by ale-tron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = fract-ol
@@ -21,7 +21,7 @@ SRC_DIR = src/
 OBJ_DIR = obj/
 
 INCLUDE = Makefile inc/fract-ol.h libft/*/*/*.c libft/inc/*.h 
-SRC = fract-ol.c
+SRC = fract-ol.c handle_errors.c
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 
