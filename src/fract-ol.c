@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:33:26 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/15 18:39:41 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/16 18:53:31 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fract-ol.h"
@@ -43,17 +43,21 @@ void	init(t_fractol *f)
 
 	f->conn = mlx_init();
 	if (!f->conn)
-		clean_exit("Error connecting to mlx", f);
+		clean_error("Error connecting to mlx", f, 1);
 	f->win = mlx_new_window(f->conn, WIDTH, HEIGHT, "Fract-ol");
 	if (!f->win)
-		clean_exit("Error creating window", f);
+		clean_error("Error creating window", f, 1);
 	f->img = mlx_new_image(f->conn, WIDTH, HEIGHT);
 	if (!f->img)
-		clean_exit("Error creating img", f);
-	f->img_addr = mlx_get_data_addr(f->img, f->img_bpp, f->img_line, f->img_endian);
-	if(!f->img_addr)
-		clean_exit("Error image address", f);
-	mlx_loop(f->conn);
+		clean_error("Error creating img", f, 1);
+	f->img_addr = mlx_get_data_addr(f->img, &f->img_bpp, &f->img_line, &f->img_endian);
+//	if(!f->img_addr)
+//		clean_error("Error image address", f, 1);
+	
+
+	mlx_put_image_to_window(f->conn, f->win, f->img, 0, 0);
+
+	//ft_printf("hola %s hollal", f->img_addr);
 }
 
 
@@ -65,14 +69,9 @@ int	main(int argc, char **argv)
 		help_msg();
 	handle_arg(&fract, argv);
 	init(&fract);
-	
-//	void *mlx_ptr;
-//	void *win_ptr;
+	init_events(&fract);	
 
-//	mlx_ptr = mlx_init();
-//	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx test");
-//	mlx_key_hook(win_ptr, deal_key, (void *)0);
-//	mlx_loop(mlx_ptr);
+	mlx_loop(fract.conn);
 	return (0);
 }
 
