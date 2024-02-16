@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:33:26 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/16 18:53:31 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:51:53 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fract-ol.h"
@@ -51,11 +51,19 @@ void	init(t_fractol *f)
 	if (!f->img)
 		clean_error("Error creating img", f, 1);
 	f->img_addr = mlx_get_data_addr(f->img, &f->img_bpp, &f->img_line, &f->img_endian);
+
+
 //	if(!f->img_addr)
 //		clean_error("Error image address", f, 1);
 	
+	int i = 0;
+		while (i < 700)
+		{
+			mlx_pixel_put(f->conn, f->win, 7, i, 666);
+			i++;
+		}
 
-	mlx_put_image_to_window(f->conn, f->win, f->img, 0, 0);
+//	mlx_put_image_to_window(f->conn, f->win, f->img, 0, 0);
 
 	//ft_printf("hola %s hollal", f->img_addr);
 }
