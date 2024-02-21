@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:33:26 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/16 19:51:53 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:38:57 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fract-ol.h"
@@ -40,7 +40,6 @@ void	handle_arg(t_fractol *f, char **argv)
 
 void	init(t_fractol *f)
 {
-
 	f->conn = mlx_init();
 	if (!f->conn)
 		clean_error("Error connecting to mlx", f, 1);
@@ -56,15 +55,8 @@ void	init(t_fractol *f)
 //	if(!f->img_addr)
 //		clean_error("Error image address", f, 1);
 	
-	int i = 0;
-		while (i < 700)
-		{
-			mlx_pixel_put(f->conn, f->win, 7, i, 666);
-			i++;
-		}
 
-//	mlx_put_image_to_window(f->conn, f->win, f->img, 0, 0);
-
+//	
 	//ft_printf("hola %s hollal", f->img_addr);
 }
 
@@ -77,8 +69,8 @@ int	main(int argc, char **argv)
 		help_msg();
 	handle_arg(&fract, argv);
 	init(&fract);
-	init_events(&fract);	
-
+	init_events(&fract);
+	render(&fract);
 	mlx_loop(fract.conn);
 	return (0);
 }
