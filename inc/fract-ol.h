@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:28:10 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/21 16:38:57 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:58:07 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FRACTOL_H
@@ -20,6 +20,10 @@
 
 # define WIDTH	900
 # define HEIGHT	900
+
+#define BLACK       0x000000
+#define WHITE       0xFFFFFF
+#define YELLOW      0xCCFF00  // A blinding lime
 
 /*
 typedef struct s_img
@@ -48,6 +52,7 @@ typedef struct s_fractol
 	int		img_endian;
 	int		type;
 	int		iteration;
+	int		*color;
 
 }	t_fractol;
 
