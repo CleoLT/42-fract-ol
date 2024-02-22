@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:16:08 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/22 16:50:17 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:38:19 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fract-ol.h"
@@ -17,17 +17,6 @@ double scale_pixel(double current_pixel, double win_max, double win_min, double 
 	return ((current_pixel - win_min) * (new_max - new_min) / (win_max - win_min) + new_min);
 }
 
-/*
-static void	set_pixels(int pixel_x, int pixel_y, t_fractol *f)
-{
-	t_number	complex_z;
-	
-	complex_z.x = scaled_pixel(pixel_x, WIDTH, 0, 2, -2);
-	complex_z.y = scaled_pixel(pixel_y, HEIGHT, 0, -2, 2);
-	
-	
-}
-*/
 
 static t_number	fractal_equation(t_number c, t_number z)
 {
@@ -37,42 +26,40 @@ static t_number	fractal_equation(t_number c, t_number z)
 	result.y = 2 * z.x * z.y + c.y;
 	return (result);
 }
-/*
-static int	fractal_iteration(t_number c)
-{
-	int			count;
-	t_number	z;
-	double		tmp_zx;
-	
-	z.x = 0;
-	z.y = 0;
-	count = 0;
-	while (count < 50)
-	{
-		if ((z.x * z.x + z.y *z.y) > 4)
-			break;
-		tmp_zx = z.x * z.x - z.y * z.y + c.x;
-		z.y = 2 * z.x * z.y + c.y;
-		z.x = tmp_zx;
-		count++;
-	}
-	return (count);
-}
 
-static void	pixel_color(t_fractol *f, int x, int y, int color)
-{
-	f->img_addr[x * 4 + y * WIDTH * 4] = color;
-	f->img_addr[x * 4 + y * WIDTH * 4 + 1] = color >> 8;
-
-}
-
-*/
 static void set_pixel_color(int y, int x, t_fractol *f, int color)
 {
 	int offset;
 	offset = y * f->img_line + x * (f->img_bpp / 8);
-	*(unsigned int *)(f->img_addr + offset) = color;
-
+	if (x == 1 && y == 0)
+	{
+		printf("offset %d \n", offset);
+		printf("%c\n", f->img_addr[0]);
+		printf("%c\n", f->img_addr[1]);
+	}
+	//line : 3600 line = (WIDTH *4), bpp : 32 
+		f->img_addr[offset] = color;
+		f->img_addr[offset + 1] = color >> 8;
+		f->img_addr[offset + 2] = color >> 16;
+		f->img_addr[offset + 3] = color >> 24;
+//	*(int *)(f->img_addr + offset) = color;
+	if (x == 1 && y == 0)
+	{
+		int i = 0;
+		while (i < 10)
+		{	printf("%d\n", f->img_addr[i]);
+			i++;
+		}
+ 
+/*		printf("offset %d \n", offset);
+		printf("%d\n", f->img_addr[0]);
+		printf("%d\n", f->img_addr[1]);
+		printf("%d\n", f->img_addr[2]);
+		printf("%d\n", f->img_addr[3]);
+		printf("%d\n", f->img_addr[4]);
+		printf("%d\n", f->img_addr[5]);
+//		printf("%d\n", (unsigned int *)(f->img_addr + offset)[3]) ;*/
+	}
 
 }
 
@@ -97,15 +84,13 @@ static void	iteration_to_pixel(t_fractol *f, int pixel_x, int pixel_y, t_number 
 
 		color = scale_pixel(i, f->iteration, 0, BLACK, WHITE);
 		set_pixel_color(pixel_y, pixel_x, f, color);
+	//	mlx_pixel_put(f->conn, f->win, pixel_x, pixel_y, color);
 	//	ft_printf("%d", i);	
 		return ;
 		}
 		i++;
 	}
 	set_pixel_color(pixel_y, pixel_x, f, BLACK);
-
-
-
 }
 
 
@@ -114,9 +99,10 @@ void	render(t_fractol *f)
 	t_number	complex_c;
 	int			pixel_x;
 	int			pixel_y;
-//	int			iter;
 
-//	f->color = ft_calloc((50 + 1), sizeof(int));
+
+//	f->palette = ft_calloc((50 + 1), sizeof(int));
+//	f->color = 0;
 	pixel_y = -1;
 	while (++pixel_y < HEIGHT)
 	{
@@ -124,12 +110,9 @@ void	render(t_fractol *f)
 		pixel_x = -1;
 		while (++pixel_x < WIDTH)
 		{
-		//	iter = fractal_iteration(complex_c);
-		//ft_printf("%d ", iter);
 		complex_c.y = scale_pixel(pixel_y, HEIGHT, 0, -2, 2);		
 		complex_c.x = scale_pixel(pixel_x, WIDTH, 0, 2, -2);
 		iteration_to_pixel(f, pixel_x, pixel_y, complex_c);
-	//	pixel_color(f, pixel_x, pixel_y, f->color[iter]);
 		}
 	}
 	mlx_put_image_to_window(f->conn, f->win, f->img, 0, 0);

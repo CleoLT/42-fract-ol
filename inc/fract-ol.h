@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:28:10 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/22 15:58:07 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:20:57 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FRACTOL_H
@@ -52,7 +52,7 @@ typedef struct s_fractol
 	int		img_endian;
 	int		type;
 	int		iteration;
-	int		*color;
+	int		*palette;
 
 }	t_fractol;
 
