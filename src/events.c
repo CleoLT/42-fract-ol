@@ -24,5 +24,4 @@ void	init_events(t_fractol *f)
 {
 	mlx_hook(f->win, 17, 0, ft_exit, f);
 	mlx_key_hook(f->win, key_event, f);
-
 }

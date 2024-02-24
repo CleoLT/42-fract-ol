@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract-ol.h                                         :+:      :+:    :+:   */
+/*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,6 +9,7 @@
 /*   Updated: 2024/02/22 17:20:57 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
@@ -21,9 +22,9 @@
 # define WIDTH	900
 # define HEIGHT	900
 
-#define BLACK       0x000000
-#define WHITE       0xFFFFFF
-#define YELLOW      0xCCFF00  // A blinding lime
+# define BLACK       0x000000
+# define WHITE       0xFFFFFF
+# define YELLOW      0xCCFF00  // A blinding lime
 
 /*
 typedef struct s_img
@@ -35,7 +36,7 @@ typedef struct s_img
 	int		*endian;
 }
 */
-typedef struct	s_number
+typedef struct s_number
 {
 	double	x;
 	double	y;

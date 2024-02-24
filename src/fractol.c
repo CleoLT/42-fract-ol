@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract-ol.c                                         :+:      :+:    :+:   */
+/*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -22,13 +22,12 @@ void	help_msg(void)
 }
 
 void	handle_arg(t_fractol *f, char **argv)
-{	
+{
 	int	i;
 
 	i = -1;
-	while(argv[1][++i])
+	while (argv[1][++i])
 		argv[1][i] = ft_tolower(argv[1][i]);
-//	ft_printf("%s", argv[1]);
 	f->type = 0;
 	if (!ft_strncmp(argv[1], "mandelbrot", 11))
 		f->type = 1;
@@ -49,23 +48,17 @@ void	init(t_fractol *f)
 	f->img = mlx_new_image(f->conn, WIDTH, HEIGHT);
 	if (!f->img)
 		clean_error("Error creating img", f, 1);
-	f->img_addr = mlx_get_data_addr(f->img, &f->img_bpp, &f->img_line, &f->img_endian);
-
-	{
-		printf("line : %d, bpp : %d\n", f->img_line, f->img_bpp);
-	}
-
+	f->img_addr = mlx_get_data_addr(f->img, &f->img_bpp, &f->img_line,
+			/ &f->img_endian);
+	printf("line : %d, bpp : %d\n", f->img_line, f->img_bpp);
 //	if(!f->img_addr)
 //		clean_error("Error image address", f, 1);
-	
-
 }
-
 
 int	main(int argc, char **argv)
 {
 	t_fractol	fract;
- 
+
 	if (argc != 2)
 		help_msg();
 	handle_arg(&fract, argv);
@@ -75,4 +68,3 @@ int	main(int argc, char **argv)
 	mlx_loop(fract.conn);
 	return (0);
 }
-

@@ -9,7 +9,7 @@
 #    Updated: 2024/02/21 16:38:57 by ale-tron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-NAME = fract-ol
+NAME = fractol
 CC = gcc
 RM = rm -f
 CFLAGS = -Wextra -Wall -Werror -g -fsanitize=address
@@ -21,7 +21,7 @@ SRC_DIR = src/
 OBJ_DIR = obj/
 
 INCLUDE = Makefile inc/fract-ol.h libft/*/*/*.c libft/inc/*.h 
-SRC = fract-ol.c handle_errors.c events.c render.c
+SRC = fractol.c handle_errors.c events.c render.c
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 

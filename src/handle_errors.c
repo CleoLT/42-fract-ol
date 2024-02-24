@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "../inc/fract-ol.h"
 
-void 	print_error(char *error)
+void	print_error(char *error)
 {
 	if (error[0] != '\0')
 		ft_printf("%s\n", error);
@@ -44,8 +44,8 @@ int	clean_exit(t_fractol *f)
 	return (0);
 }
 
-int ft_exit(void)
+int	ft_exit(void)
 {
 	exit(0);
-	return(0);
+	return (0);
 }
