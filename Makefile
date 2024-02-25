@@ -6,13 +6,13 @@
 #    By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/08 12:38:16 by ale-tron          #+#    #+#              #
-#    Updated: 2024/02/25 14:38:52 by ale-tron         ###   ########.fr        #
+#    Updated: 2024/02/25 16:36:43 by ale-tron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = fractol
 CC = gcc
 RM = rm -f
-CFLAGS = -Wextra -Wall -Werror #-g -fsanitize=address
+CFLAGS = -Wextra -Wall -Werror -g -fsanitize=address
 LIBFT_FLAGS =  -L ./libft -lft
 MLX_FLAGS = -L ./mlx -lmlx -lm -framework OpenGL -framework AppKit
 
@@ -21,7 +21,7 @@ SRC_DIR = src/
 OBJ_DIR = obj/
 
 INCLUDE = Makefile inc/fractol.h libft/*/*/*.c libft/inc/*.h 
-SRC = fractol.c handle_errors.c events.c render.c equations.c
+SRC = fractol.c handle_errors.c events.c render.c equations.c utils.c 
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 

@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:33:26 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/25 15:27:09 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/25 16:26:28 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
@@ -58,12 +58,16 @@ void	init(t_fractol *f)
 //		clean_error("Error image address", f, 1);
 }
 
-static void	init_julia_c(t_fractol *f)
+static void	init_julia_c(t_fractol *f, char **argv)
 {
 	f->julia_c.x = -0.374004139;
 	f->julia_c.y = 0.659792175;
-	printf("%f\n", -0.374004139);
-	printf("%f\n", DBL_MAX);
+	if (!argv[2])
+		return ;
+//	if (ft_atod(argv[2]))
+//		f->julia_c.x = ft_atod(argv[2]); 
+//	printf("%f\n", f->julia_c.x);
+//	printf("%f\n", DBL_MAX);
 }
 
 int	main(int argc, char **argv)
@@ -74,7 +78,17 @@ int	main(int argc, char **argv)
 		help_msg();
 	handle_arg(&fract, argv);
 	if (fract.type == JULIA)
-		init_julia_c(&fract);
+		init_julia_c(&fract, argv);
+
+	
+
+	if (argv[2])
+	{
+		fract.julia_c.x = ft_atod(argv[2]); 
+		printf("holi%f\n", fract.julia_c.x);
+	
+	}
+
 	init(&fract);
 	init_events(&fract);
 	render(&fract);

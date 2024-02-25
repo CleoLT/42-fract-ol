@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:28:10 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/25 15:17:26 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/25 16:17:10 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	init_events(t_fractol *f);
 void	render(t_fractol *f);
 
 t_number	fractal_equation(t_fractol *f, t_number c, t_number z);
+
+double	ft_atod(char *str);
 
 int		ft_exit(void);
 
