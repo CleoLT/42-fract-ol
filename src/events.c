@@ -6,10 +6,10 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:37:30 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/16 19:23:57 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/25 12:13:54 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/fract-ol.h"
+#include "../inc/fractol.h"
 
 int	key_event(int key_code, t_fractol *f)
 {

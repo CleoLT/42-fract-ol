@@ -6,60 +6,30 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:16:08 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/22 18:38:19 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/25 14:54:30 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/fract-ol.h"
+#include "../inc/fractol.h"
 
-double	scale_pixel(double current_pixel, double win_max, double win_min, double new_max, double new_min)
-{
-	return ((current_pixel - win_min) * (new_max - new_min) / (win_max - win_min) + new_min);
-}
-
-static t_number	fractal_equation(t_number c, t_number z)
-{
-	t_number	result;
-
-	result.x = z.x * z.x - z.y * z.y + c.x;
-	result.y = 2 * z.x * z.y + c.y;
-	return (result);
+static double	scale_pixel(double current_pixel, t_offset o)
+{	
+	return ((current_pixel - o.old_min) * (o.new_max - o.new_min) / \
+			(o.old_max - o.old_min) + o.new_min);
 }
 
 static void	set_pixel_color(int y, int x, t_fractol *f, int color)
 {
-	int	pixel;
-	int	i;
+	int	first_byte_pixel;
 
-	pixel = y * f->img_line + x * (f->img_bpp / 8);
-	if (x == 1 && y == 0)
-	{
-		printf("offset %d \n", pixel);
-		printf("%c\n", f->img_addr[0]);
-		printf("%c\n", f->img_addr[1]);
-	}
-//	line : 3600 line = (WIDTH *4), bpp : 32 
-	f->img_addr[pixel] = color;
-	f->img_addr[pixel + 1] = color >> 8;
-	f->img_addr[pixel + 2] = color >> 16;
-	f->img_addr[pixel + 3] = color >> 24;
-//	*(int *)(f->img_addr + pixel) = color;
-	if (x == 1 && y == 0)
-	{
-		i = 0;
-		while (i < 10)
-		{
-			printf("%d\n", f->img_addr[i]);
-			i++;
-		}
-/*		printf("offset %d \n", offset);
-		printf("%d\n", f->img_addr[0]);
-		printf("%d\n", f->img_addr[1]);
-		printf("%d\n", f->img_addr[2]);
-		printf("%d\n", f->img_addr[3]);
-		printf("%d\n", f->img_addr[4]);
-		printf("%d\n", f->img_addr[5]);
-		printf("%d\n", (unsigned int *)(f->img_addr + offset)[3]) ;*/
-	}
+	first_byte_pixel = y * f->img_line + x * (f->img_bpp / 8);
+	*(int *)(f->img_addr + first_byte_pixel) = color;
+}
+static void init_color_calc(t_offset *color, t_fractol *f)
+{
+	color->old_min = 0;
+	color->old_max = f->iteration;
+	color->new_min = WHITE;
+	color->new_max = BLACK;
 }
 
 static void	iteration_to_pixel(t_fractol *f, int pixel_x, int pixel_y, t_number complex_c)
@@ -67,20 +37,26 @@ static void	iteration_to_pixel(t_fractol *f, int pixel_x, int pixel_y, t_number 
 	int			i;
 	int			color;
 	t_number	complex_z;
+	t_offset	color_calc;
 
-//	t_number	complex_c;
-//	complex_c.y = scale_pixel(pixel_y, HEIGHT, 0, -2, 2);		
-//	complex_c.x = scale_pixel(pixel_x, WIDTH, 0, 2, -2);
 	f->iteration = 100;
+	init_color_calc(&color_calc, f);
 	complex_z.x = 0;
 	complex_z.y = 0;
+	if (f->type == JULIA)
+	{
+		complex_z.x = complex_c.x;
+		complex_z.y = complex_c.y;
+	}
+
+
 	i = 0;
 	while (i < f->iteration)
 	{
-		complex_z = fractal_equation(complex_c, complex_z);
+		complex_z = fractal_equation(f, complex_c, complex_z);
 		if ((complex_z.x * complex_z.x) + (complex_z.y * complex_z.y) > 4)
 		{
-			color = scale_pixel(i, f->iteration, 0, BLACK, WHITE);
+			color = scale_pixel(i, color_calc);
 			set_pixel_color(pixel_y, pixel_x, f, color);
 			return ;
 		}
@@ -89,21 +65,35 @@ static void	iteration_to_pixel(t_fractol *f, int pixel_x, int pixel_y, t_number 
 	set_pixel_color(pixel_y, pixel_x, f, BLACK);
 }
 
+void	init_offset_win(t_offset *height, t_offset *width)
+{
+	height->old_min = 0;
+	height->old_max = HEIGHT;
+	height->new_min = -2;
+	height->new_max = 2;
+	width->old_min = 0;
+	width->old_max = WIDTH;
+	width->new_min = -2;
+	width->new_max = 2;
+}
+
 void	render(t_fractol *f)
 {
 	t_number	complex_c;
+	t_offset	win_height;
+	t_offset	win_width;
 	int			pixel_x;
 	int			pixel_y;
 
+	init_offset_win(&win_height, &win_width);
 	pixel_y = -1;
 	while (++pixel_y < HEIGHT)
 	{
-	//	complex_c.y = scale_pixel(pixel_y, HEIGHT, 0, -2, 2);
+		complex_c.y = scale_pixel(pixel_y, win_height);
 		pixel_x = -1;
 		while (++pixel_x < WIDTH)
 		{
-			complex_c.y = scale_pixel(pixel_y, HEIGHT, 0, -2, 2);
-			complex_c.x = scale_pixel(pixel_x, WIDTH, 0, 2, -2);
+			complex_c.x = scale_pixel(pixel_x, win_width);
 			iteration_to_pixel(f, pixel_x, pixel_y, complex_c);
 		}
 	}

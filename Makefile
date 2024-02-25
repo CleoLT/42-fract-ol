@@ -6,13 +6,13 @@
 #    By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/08 12:38:16 by ale-tron          #+#    #+#              #
-#    Updated: 2024/02/21 16:38:57 by ale-tron         ###   ########.fr        #
+#    Updated: 2024/02/25 14:38:52 by ale-tron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = fractol
 CC = gcc
 RM = rm -f
-CFLAGS = -Wextra -Wall -Werror -g -fsanitize=address
+CFLAGS = -Wextra -Wall -Werror #-g -fsanitize=address
 LIBFT_FLAGS =  -L ./libft -lft
 MLX_FLAGS = -L ./mlx -lmlx -lm -framework OpenGL -framework AppKit
 
@@ -20,8 +20,8 @@ LIBFT_DIR = libft/
 SRC_DIR = src/
 OBJ_DIR = obj/
 
-INCLUDE = Makefile inc/fract-ol.h libft/*/*/*.c libft/inc/*.h 
-SRC = fractol.c handle_errors.c events.c render.c
+INCLUDE = Makefile inc/fractol.h libft/*/*/*.c libft/inc/*.h 
+SRC = fractol.c handle_errors.c events.c render.c equations.c
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 
@@ -31,7 +31,7 @@ $(NAME): $(OBJ)
 		make -C $(LIBFT_DIR)
 		$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(MLX_FLAGS) $(LIBFT_FLAGS)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCLUDE)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c  $(INCLUDE)
 		mkdir -p $(OBJ_DIR)
 		$(CC) $(CFLAGS) -c -o $@ $<
 clean: 
