@@ -9,25 +9,15 @@
 /*   Updated: 2024/02/25 16:17:10 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
+# include "macros.h"
 # include "../mlx/mlx.h"
 # include "../libft/inc/libft.h"
 # include "../libft/inc/ft_printf.h"
 # include <math.h>
 # include <stdio.h>
-# include <float.h>
-
-# define WIDTH	900
-# define HEIGHT	900
-# define MANDELBROT 1
-# define JULIA 2
-
-# define BLACK       0x000000
-# define WHITE       0xFFFFFF
-# define YELLOW      0xCCFF00  // A blinding lime
 
 /*
 typedef struct s_img

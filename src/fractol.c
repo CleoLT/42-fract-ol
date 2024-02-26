@@ -36,6 +36,10 @@ void	handle_arg(t_fractol *f, char **argv)
 		f->type = MANDELBROT;
 	if (!ft_strncmp(argv[1], "julia", 6))
 		f->type = JULIA;
+	if (!ft_strncmp(argv[1], "burningship", 12))
+		f->type = BURNINGSHIP;
+	if (!ft_strncmp(argv[1], "mandelreverse", 14))
+		f->type = MANDELREVERSE;
 	if (!f->type)
 		help_msg();
 }

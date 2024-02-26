@@ -13,15 +13,15 @@
 
 int	key_event(int key_code, t_fractol *f)
 {
-	if (key_code == 53)
+	if (key_code == ESC_KEY)
 		exit(0);
-	if (key_code == 1)
+	if (key_code == 1) //esto no es nada, areemplazar
 		clean_exit(f);
 	return (0);
 }
 
 void	init_events(t_fractol *f)
 {
-	mlx_hook(f->win, 17, 0, ft_exit, f);
+	mlx_hook(f->win, ON_DESTROY, 0, ft_exit, f);
 	mlx_key_hook(f->win, key_event, f);
 }
