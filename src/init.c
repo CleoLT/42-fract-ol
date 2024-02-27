@@ -27,10 +27,4 @@ void	data_init(t_fractol *f)
 {
 	f->iteration = 100;
 	f->zoom = 1;
-
-
-
-
-
-
 }

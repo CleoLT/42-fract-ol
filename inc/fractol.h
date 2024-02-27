@@ -59,21 +59,20 @@ typedef struct s_fractol
 
 }	t_fractol;
 
-void	clean_error(char *error, t_fractol *fract, int code_exit);
-int		clean_exit(t_fractol *f);
-int		handle_julia_arg(char *arg);
+void		clean_error(char *error, t_fractol *fract, int code_exit);
+int			clean_exit(t_fractol *f);
+int			handle_julia_arg(char *arg);
 
-
-void	init_offset_win(t_offset *height, t_offset *width);
-void	data_init(t_fractol *f);
-void	init_events(t_fractol *f);
-void	render(t_fractol *f);
+void		init_offset_win(t_offset *height, t_offset *width);
+void		data_init(t_fractol *f);
+void		init_events(t_fractol *f);
+void		render(t_fractol *f);
 
 t_number	fractal_equation(t_fractol *f, t_number c, t_number z);
 
-double	ft_atod(char *str);
-int		ft_isspace(int c);
+double		ft_atod(char *str);
+int			ft_isspace(int c);
 
-int		ft_exit(void);
+int			ft_exit(void);
 
 #endif

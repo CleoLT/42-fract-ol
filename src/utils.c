@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 #include "../inc/fractol.h"
 
-int ft_isspace(int c)
+int	ft_isspace(int c)
 {
-	if (c == '\t' || c == '\n' || c =='\v' || c == '\f' || \
+	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || \
 			c == '\r' || c == ' ')
 		return (1);
 	return (0);
@@ -41,7 +41,7 @@ double	ft_atod(char *str)
 	while (str[i] && ft_isdigit(str[i]))
 	{
 		nb = nb * 10 + str[i] - '0';
-		i++;	
+		i++;
 	}
 	if (str[i] == '.')
 		i++;

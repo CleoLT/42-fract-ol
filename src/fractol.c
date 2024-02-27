@@ -70,10 +70,10 @@ static void	init_julia_c(t_fractol *f, char **argv)
 		return ;
 	if (handle_julia_arg(argv[2]) || handle_julia_arg(argv[3]))
 		help_msg();
-	f->julia_c.x = ft_atod(argv[2]); 
+	f->julia_c.x = ft_atod(argv[2]);
 	f->julia_c.y = ft_atod(argv[3]);
 	if (f->julia_c.x > 2 || f->julia_c.x < -2 || f->julia_c.y > 2 \
-		   || f->julia_c.y < -2 )
+			|| f->julia_c.y < -2)
 		help_msg();
 }
 

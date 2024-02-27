@@ -12,7 +12,7 @@
 #include "../inc/fractol.h"
 
 static double	scale_pixel(double current_pixel, t_offset o)
-{	
+{
 	return ((current_pixel - o.old_min) * (o.new_max - o.new_min) / \
 			(o.old_max - o.old_min) + o.new_min);
 }
@@ -24,7 +24,8 @@ static void	set_pixel_color(int y, int x, t_fractol *f, int color)
 	first_byte_pixel = y * f->img_line + x * (f->img_bpp / 8);
 	*(int *)(f->img_addr + first_byte_pixel) = color;
 }
-static void init_color_calc(t_offset *color, t_fractol *f)
+
+static void	init_color_calc(t_offset *color, t_fractol *f)
 {
 	color->old_min = 0;
 	color->old_max = f->iteration;
@@ -32,7 +33,8 @@ static void init_color_calc(t_offset *color, t_fractol *f)
 	color->new_max = BLACK;
 }
 
-static void init_complex_z(t_number *complex_z, t_number *complex_c, t_fractol *f)
+static void	init_complex_z(t_number *complex_z, t_number *complex_c, \
+															t_fractol *f)
 {
 	complex_z->x = 0;
 	complex_z->y = 0;
@@ -43,7 +45,8 @@ static void init_complex_z(t_number *complex_z, t_number *complex_c, t_fractol *
 	}
 }
 
-static void	iteration_to_pixel(t_fractol *f, int pixel_x, int pixel_y, t_number complex_c)
+static void	iteration_to_pixel(t_fractol *f, int pixel_x, int pixel_y, \
+														t_number complex_c)
 {
 	int			i;
 	int			color;
