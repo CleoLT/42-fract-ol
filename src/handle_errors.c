@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 12:18:42 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/25 12:13:54 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:48:08 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
@@ -41,6 +41,35 @@ int	clean_exit(t_fractol *f)
 //	if (f->conn)
 //		free(f->conn);
 //	exit(0);
+	return (0);
+}
+
+int	handle_julia_arg(char *arg)
+{
+	int	i;
+	int	point;
+
+	i = 0;
+	point = 0;
+	while (arg[i] && ft_isspace(arg[i]))
+		i++;
+	if ((arg[i] && arg[i] == '+') || (arg[i] && arg[i] == '-'))
+		i++;
+	while (arg[i])
+	{
+		if (arg[i] == '.')
+		{
+			point++;
+			i++;
+			if (point > 1)
+				return (1);
+		}
+		if (!ft_isdigit(arg[i]))
+			return (1);
+		i++;
+	}
+	if (!ft_isdigit(arg[i - 1]))
+		return (1);
 	return (0);
 }
 
