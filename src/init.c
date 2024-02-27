@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 18:37:30 by ale-tron          #+#    #+#             */
+/*   Created: 2024/02/27 13:06:14 by ale-tron          #+#    #+#             */
 /*   Updated: 2024/02/27 13:12:17 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
 
-int	key_event(int key_code, t_fractol *f)
+void	init_offset_win(t_offset *height, t_offset *width)
 {
-	if (key_code == ESC_KEY)
-		exit(0);
-	if (key_code == 1) //esto no es nada, areemplazar
-		clean_exit(f);
-	return (0);
+	height->old_min = 0;
+	height->old_max = HEIGHT;
+	height->new_min = -2;
+	height->new_max = 2;
+	width->old_min = 0;
+	width->old_max = WIDTH;
+	width->new_min = -2;
+	width->new_max = 2;
 }
 
-void	init_events(t_fractol *f)
+void	data_init(t_fractol *f)
 {
-	mlx_hook(f->win, ON_DESTROY, 0, ft_exit, f);
-	mlx_key_hook(f->win, key_event, f);
+	f->iteration = 100;
+	f->zoom = 1;
+
+
+
+
+
+
 }

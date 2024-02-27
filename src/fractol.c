@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:33:26 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/27 13:00:35 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:12:17 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
@@ -86,6 +86,7 @@ int	main(int argc, char **argv)
 	handle_arg(&fract, argv);
 	if (fract.type == JULIA)
 		init_julia_c(&fract, argv);
+	data_init(&fract);
 	init(&fract);
 	init_events(&fract);
 	render(&fract);

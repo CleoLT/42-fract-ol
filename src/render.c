@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:16:08 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/25 14:54:30 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:20:41 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
@@ -32,6 +32,17 @@ static void init_color_calc(t_offset *color, t_fractol *f)
 	color->new_max = BLACK;
 }
 
+static void init_complex_z(t_number *complex_z, t_number *complex_c, t_fractol *f)
+{
+	complex_z->x = 0;
+	complex_z->y = 0;
+	if (f->type == JULIA)
+	{
+		complex_z->x = complex_c->x;
+		complex_z->y = complex_c->y;
+	}
+}
+
 static void	iteration_to_pixel(t_fractol *f, int pixel_x, int pixel_y, t_number complex_c)
 {
 	int			i;
@@ -39,17 +50,15 @@ static void	iteration_to_pixel(t_fractol *f, int pixel_x, int pixel_y, t_number 
 	t_number	complex_z;
 	t_offset	color_calc;
 
-	f->iteration = 100;
 	init_color_calc(&color_calc, f);
-	complex_z.x = 0;
-	complex_z.y = 0;
-	if (f->type == JULIA)
-	{
-		complex_z.x = complex_c.x;
-		complex_z.y = complex_c.y;
-	}
-
-
+	init_complex_z(&complex_z, &complex_c, f);
+//	complex_z.x = 0;
+//	complex_z.y = 0;
+//	if (f->type == JULIA)
+//	{
+//		complex_z.x = complex_c.x;
+//		complex_z.y = complex_c.y;
+//	}
 	i = 0;
 	while (i < f->iteration)
 	{
@@ -63,18 +72,6 @@ static void	iteration_to_pixel(t_fractol *f, int pixel_x, int pixel_y, t_number 
 		i++;
 	}
 	set_pixel_color(pixel_y, pixel_x, f, BLACK);
-}
-
-void	init_offset_win(t_offset *height, t_offset *width)
-{
-	height->old_min = 0;
-	height->old_max = HEIGHT;
-	height->new_min = -2;
-	height->new_max = 2;
-	width->old_min = 0;
-	width->old_max = WIDTH;
-	width->new_min = -2;
-	width->new_max = 2;
 }
 
 void	render(t_fractol *f)

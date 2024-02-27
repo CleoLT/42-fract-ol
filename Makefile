@@ -6,7 +6,7 @@
 #    By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/08 12:38:16 by ale-tron          #+#    #+#              #
-#    Updated: 2024/02/27 12:48:13 by ale-tron         ###   ########.fr        #
+#    Updated: 2024/02/27 13:12:17 by ale-tron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = fractol
@@ -21,7 +21,7 @@ SRC_DIR = src/
 OBJ_DIR = obj/
 
 INCLUDE = Makefile inc/fractol.h libft/*/*/*.c libft/inc/*.h 
-SRC = fractol.c handle_errors.c events.c render.c equations.c utils.c 
+SRC = fractol.c handle_errors.c events.c render.c equations.c utils.c init.c
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 
