@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:16:08 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/27 13:20:41 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/28 13:53:17 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
@@ -87,13 +87,14 @@ void	render(t_fractol *f)
 
 	init_offset_win(&win_height, &win_width);
 	pixel_y = -1;
+//	printf("%f\n", f->zoom);
 	while (++pixel_y < HEIGHT)
 	{
-		complex_c.y = scale_pixel(pixel_y, win_height);
+		complex_c.y = scale_pixel(pixel_y, win_height) * f->zoom;
 		pixel_x = -1;
 		while (++pixel_x < WIDTH)
 		{
-			complex_c.x = scale_pixel(pixel_x, win_width);
+			complex_c.x = scale_pixel(pixel_x, win_width) * f->zoom;
 			iteration_to_pixel(f, pixel_x, pixel_y, complex_c);
 		}
 	}
