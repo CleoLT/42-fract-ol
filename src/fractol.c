@@ -6,28 +6,12 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:33:26 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/28 15:08:24 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:33:29 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
-#include <unistd.h>
 
-void	help_msg(void)
-{
-	ft_printf("\n================== Fractol ==================\n\n");
-	ft_printf("You must type:\n\n\n");
-	ft_printf("\t./fract-ol mandelbrot\n");
-	ft_printf("\t./fract-ol mandelreverse\n");
-	ft_printf("\t./fract-ol burningship\n");
-	ft_printf("\t./fract-ol julia <param1> <param2>\n");
-	ft_printf("\t./fract-ol julia 0.285 0.013\n");
-	ft_printf("\t./fract-ol julia -0.4 0.6\n");
-	ft_printf("\t./fract-ol julia -0.8 0.156\n\n");
-	ft_printf("\tJulia's <param> must be between -2 and 2.\n\n\n\n\n\n");
-	exit(1);
-}
-
-void	handle_arg(t_fractol *f, char **argv)
+static void	handle_arg(t_fractol *f, char **argv)
 {
 	int	i;
 
@@ -47,7 +31,7 @@ void	handle_arg(t_fractol *f, char **argv)
 		help_msg();
 }
 
-void	init_mlx(t_fractol *f)
+static void	init_mlx(t_fractol *f)
 {
 	f->conn = mlx_init();
 	if (!f->conn)

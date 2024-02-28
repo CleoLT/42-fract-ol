@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:28:10 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/28 16:04:10 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:33:29 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FRACTOL_H
@@ -60,20 +60,22 @@ typedef struct s_fractol
 
 }	t_fractol;
 
+void		help_msg(void);
 void		clean_error(char *error, t_fractol *fract, int code_exit);
-int			clean_exit(t_fractol *f);
+int			ft_exit(void);
 int			handle_julia_arg(char *arg);
 
 void		init_offset_win(t_offset *height, t_offset *width);
 void		data_init(t_fractol *f);
 void		init_events(t_fractol *f);
+
 void		render(t_fractol *f);
+int blend_color(int black, int white, double iteration);
 
 t_number	fractal_equation(t_fractol *f, t_number c, t_number z);
 
 double		ft_atod(char *str);
 int			ft_isspace(int c);
 
-int			ft_exit(void);
 
 #endif

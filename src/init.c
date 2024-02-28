@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 13:06:14 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/28 15:04:27 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:33:29 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
@@ -27,4 +27,6 @@ void	data_init(t_fractol *f)
 {
 	f->iteration = 50;
 	f->zoom = 1;
+	f->shift.x = 0;
+	f->shift.y = 0;
 }
