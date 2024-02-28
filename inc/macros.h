@@ -23,5 +23,7 @@
 # define RIGHT_KEY	124
 # define DOWN_KEY   125
 # define UP_KEY     126
+# define PLUS_KEY	69
+# define MINUS_KEY	78
 
 #endif

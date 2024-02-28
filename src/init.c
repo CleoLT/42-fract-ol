@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 13:06:14 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/27 13:12:17 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:04:27 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
@@ -25,6 +25,6 @@ void	init_offset_win(t_offset *height, t_offset *width)
 
 void	data_init(t_fractol *f)
 {
-	f->iteration = 100;
+	f->iteration = 50;
 	f->zoom = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:33:26 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/28 14:01:21 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:08:24 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
@@ -47,7 +47,7 @@ void	handle_arg(t_fractol *f, char **argv)
 		help_msg();
 }
 
-void	init(t_fractol *f)
+void	init_mlx(t_fractol *f)
 {
 	f->conn = mlx_init();
 	if (!f->conn)
@@ -87,12 +87,9 @@ int	main(int argc, char **argv)
 	if (fract.type == JULIA)
 		init_julia_c(&fract, argv);
 	data_init(&fract);
-	init(&fract);
-	printf("%f\n", fract.zoom);
+	init_mlx(&fract);
 	init_events(&fract);
-	printf("%f\n", fract.zoom);
 	render(&fract);
-	printf("%f\n", fract.zoom);
 	mlx_loop(fract.conn);
 	return (0);
 }
