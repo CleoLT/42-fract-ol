@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:28:10 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/29 15:38:31 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:50:35 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FRACTOL_H
@@ -39,7 +39,6 @@ typedef struct s_fractol
 	double		zoom;
 	t_number	julia_c;
 	t_number	shift;
-
 }	t_fractol;
 
 void		help_msg(void);
@@ -55,6 +54,5 @@ int			fractal_equation(t_fractol *f, double c_x, double c_y);
 
 double		ft_atod(char *str);
 int			ft_isspace(int c);
-
 
 #endif

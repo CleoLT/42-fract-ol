@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:27:27 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/29 13:39:52 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:55:11 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
@@ -17,7 +17,7 @@ static int	mandelbrot(double c_x, double c_y, t_fractol *f)
 	double	z_x;
 	double	z_y;
 	double	tmp_zx;
-	
+
 	z_x = 0;
 	z_y = 0;
 	i = -1;
@@ -30,10 +30,10 @@ static int	mandelbrot(double c_x, double c_y, t_fractol *f)
 	return (i);
 }
 
-static int julia(double c_x, double c_y, t_fractol *f)
+static int	julia(double c_x, double c_y, t_fractol *f)
 {
 	int		i;
-	double 	tmp_zx;
+	double	tmp_zx;
 	double	z_x;
 	double	z_y;
 
@@ -48,7 +48,6 @@ static int julia(double c_x, double c_y, t_fractol *f)
 	}
 	return (i);
 }
-
 
 static int	burning_ship(double c_x, double c_y, t_fractol *f)
 {
@@ -70,8 +69,6 @@ static int	burning_ship(double c_x, double c_y, t_fractol *f)
 	}
 	return (i);
 }
-
-
 
 //z = z³ + 1 / c²
 static int	mandel_reverse(double c_x, double c_y, t_fractol *f)

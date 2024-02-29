@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:37:30 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/29 15:28:26 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:56:08 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
@@ -33,9 +33,9 @@ static int	key_event(int key_code, t_fractol *f)
 
 static int	mouse_event(int mouse_code, int x, int y, t_fractol *f)
 {
-	if (mouse_code == ON_MOUSEDOWN)//4
+	if (mouse_code == ON_MOUSEDOWN)
 		f->zoom *= 1.1;
-	if (mouse_code == ON_MOUSEUP)//5
+	if (mouse_code == ON_MOUSEUP)
 		f->zoom *= 0.9;
 	render(f);
 	x = 0;
@@ -49,5 +49,3 @@ void	init_events(t_fractol *f)
 	mlx_key_hook(f->win, key_event, f);
 	mlx_mouse_hook(f->win, mouse_event, f);
 }
-
-
