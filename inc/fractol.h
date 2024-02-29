@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:28:10 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/28 17:33:29 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:38:31 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FRACTOL_H
@@ -18,24 +18,6 @@
 # include "../libft/inc/ft_printf.h"
 # include <math.h>
 # include <stdio.h>
-
-/*
-typedef struct s_img
-{
-	void	*img_ptr;
-	char	*img_addr;
-	int		*bits_per_pixel;
-	int		*size_line;
-	int		*endian;
-}
-*/
-typedef struct s_offset
-{
-	int	old_min;
-	int	old_max;
-	int	new_min;
-	int	new_max;
-}	t_offset;
 
 typedef struct s_number
 {
@@ -53,7 +35,7 @@ typedef struct s_fractol
 	int			img_bpp;
 	int			img_line;
 	int			img_endian;
-	int			iteration;
+	int			iter;
 	double		zoom;
 	t_number	julia_c;
 	t_number	shift;
@@ -65,14 +47,11 @@ void		clean_error(char *error, t_fractol *fract, int code_exit);
 int			ft_exit(void);
 int			handle_julia_arg(char *arg);
 
-void		init_offset_win(t_offset *height, t_offset *width);
-void		data_init(t_fractol *f);
 void		init_events(t_fractol *f);
 
 void		render(t_fractol *f);
-int blend_color(int black, int white, double iteration);
 
-t_number	fractal_equation(t_fractol *f, t_number c, t_number z);
+int			fractal_equation(t_fractol *f, double c_x, double c_y);
 
 double		ft_atod(char *str);
 int			ft_isspace(int c);

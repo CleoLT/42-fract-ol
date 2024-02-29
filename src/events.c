@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:37:30 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/28 17:33:11 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:28:26 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
@@ -16,9 +16,9 @@ static int	key_event(int key_code, t_fractol *f)
 	if (key_code == ESC_KEY)
 		exit(0);
 	if (key_code == PLUS_KEY)
-		f->iteration += 9;
+		f->iter += 9;
 	if (key_code == MINUS_KEY)
-		f->iteration -= 9;
+		f->iter -= 9;
 	if (key_code == LEFT_KEY)
 		f->shift.x -= 0.5 * f->zoom;
 	if (key_code == RIGHT_KEY)
@@ -38,8 +38,8 @@ static int	mouse_event(int mouse_code, int x, int y, t_fractol *f)
 	if (mouse_code == ON_MOUSEUP)//5
 		f->zoom *= 0.9;
 	render(f);
-	x = y;
-	y = x;
+	x = 0;
+	y = 0;
 	return (0);
 }
 

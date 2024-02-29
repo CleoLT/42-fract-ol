@@ -6,66 +6,110 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:27:27 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/27 11:16:27 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/29 13:39:52 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
 
-static t_number	mandelbrot(t_number c, t_number z)
+static int	mandelbrot(double c_x, double c_y, t_fractol *f)
 {
-	t_number	result;
-
-	result.x = z.x * z.x - z.y * z.y + c.x;
-	result.y = 2 * z.x * z.y + c.y;
-	return (result);
+	int		i;
+	double	z_x;
+	double	z_y;
+	double	tmp_zx;
+	
+	z_x = 0;
+	z_y = 0;
+	i = -1;
+	while (z_x * z_x + z_y * z_y < 4 && ++i < f->iter)
+	{
+		tmp_zx = z_x * z_x - z_y * z_y + c_x;
+		z_y = 2 * z_x * z_y + c_y;
+		z_x = tmp_zx;
+	}
+	return (i);
 }
 
-static t_number	julia(t_fractol *f, t_number z)
+static int julia(double c_x, double c_y, t_fractol *f)
 {
-	t_number	result;
+	int		i;
+	double 	tmp_zx;
+	double	z_x;
+	double	z_y;
 
-	result.x = z.x * z.x - z.y * z.y + f->julia_c.x;
-	result.y = 2 * z.x * z.y + f->julia_c.y;
-	return (result);
+	i = 0;
+	z_x = c_x;
+	z_y = c_y;
+	while (z_x * z_x + z_y * z_y < 4 && ++i < f->iter)
+	{
+		tmp_zx = z_x * z_x - z_y * z_y + f->julia_c.x;
+		z_y = 2 * z_x * z_y + f->julia_c.y;
+		z_x = tmp_zx;
+	}
+	return (i);
 }
 
-static t_number	burning_ship(t_number c, t_number z)
-{
-	t_number	result;
 
-	z.x = fabs(z.x);
-	z.y = fabs(z.y);
-	result.x = z.x * z.x - z.y * z.y + c.x;
-	result.y = 2 * z.x * z.y + c.y;
-	return (result);
+static int	burning_ship(double c_x, double c_y, t_fractol *f)
+{
+	int		i;
+	double	z_x;
+	double	z_y;
+	double	tmp_zx;
+
+	i = 0;
+	z_x = 0;
+	z_y = 0;
+	while (z_x * z_x + z_y * z_y < 4 && ++i < f->iter)
+	{
+		z_x = fabs(z_x);
+		z_y = fabs(z_y);
+		tmp_zx = z_x * z_x - z_y * z_y + c_x;
+		z_y = 2 * z_x * z_y + c_y;
+		z_x = tmp_zx;
+	}
+	return (i);
 }
+
+
 
 //z = z³ + 1 / c²
-static t_number	mandel_reverse(t_number c, t_number z)
+static int	mandel_reverse(double c_x, double c_y, t_fractol *f)
 {
-	t_number	result;
-	double		c_divisor;
+	int		i;
+	double	c_divisor;
+	double	z_x;
+	double	z_y;
+	double	tmp_zx;
 
-	c_divisor = c.x * c.x * c.x * c.x + 2 * c.x * c.x * c.y * c.y + \
-				c.y * c.y * c.y * c.y;
-	result.x = z.x * z.x * z.x - 3 * z.x * z.y * z.y + \
-				(c.x * c.x + c.y * c.y) / c_divisor;
-	result.y = 3 * z.x * z.x * z.y - z.y * z.y * z.y - \
-				2 * c.x * c.y / c_divisor;
-	return (result);
+	i = 0;
+	z_x = 0;
+	z_y = 0;
+	while (z_x * z_x + z_y * z_y < 4 && ++i < f->iter)
+	{
+		c_divisor = c_x * c_x * c_x * c_x + 2 * c_x * c_x * c_y * c_y + \
+				c_y * c_y * c_y * c_y;
+		tmp_zx = z_x * z_x * z_x - 3 * z_x * z_y * z_y + \
+				(c_x * c_x + c_y * c_y) / c_divisor;
+		z_y = 3 * z_x * z_x * z_y - z_y * z_y * z_y - \
+				2 * c_x * c_y / c_divisor;
+		z_x = tmp_zx;
+	}
+	return (i);
 }
 
-t_number	fractal_equation(t_fractol *f, t_number c, t_number z)
+int	fractal_equation(t_fractol *f, double c_x, double c_y)
 {
-	t_number	result;
+	int	result;
 
+	result = 0;
 	if (f->type == MANDELBROT)
-		result = mandelbrot(c, z);
+		result = mandelbrot(c_x, c_y, f);
 	if (f->type == JULIA)
-		result = julia(f, z);
+		result = julia(c_x, c_y, f);
 	if (f->type == BURNINGSHIP)
-		result = burning_ship(c, z);
+		result = burning_ship(c_x, c_y, f);
 	if (f->type == MANDELREVERSE)
-		result = mandel_reverse(c, z);
+		result = mandel_reverse(c_x, c_y, f);
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:33:26 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/28 17:33:29 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:37:59 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
@@ -59,6 +59,14 @@ static void	init_julia_c(t_fractol *f, char **argv)
 	if (f->julia_c.x > 2 || f->julia_c.x < -2 || f->julia_c.y > 2 \
 			|| f->julia_c.y < -2)
 		help_msg();
+}
+
+static void	data_init(t_fractol *f)
+{
+	f->iter = 50;
+	f->zoom = 1;
+	f->shift.x = 0;
+	f->shift.y = 0;
 }
 
 int	main(int argc, char **argv)

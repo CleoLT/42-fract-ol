@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 12:18:42 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/28 17:33:29 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:25:32 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
@@ -75,19 +75,3 @@ int	handle_julia_arg(char *arg)
 		return (1);
 	return (0);
 }
-
-
-/*
-int	clean_exit(t_fractol *f)
-{
-	clean_error("", f, 0);
-//	if (f->img)
-//		mlx_destroy_image(f->conn, f->img);
-//	if (f->win)
-//		mlx_destroy_window(f->conn, f->win);
-//	if (f->conn)
-//		free(f->conn);
-//	exit(0);
-	return (0);
-}*/
-
