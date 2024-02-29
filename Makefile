@@ -6,13 +6,13 @@
 #    By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/08 12:38:16 by ale-tron          #+#    #+#              #
-#    Updated: 2024/02/29 15:51:36 by ale-tron         ###   ########.fr        #
+#    Updated: 2024/02/29 16:20:33 by ale-tron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = fractol
 CC = gcc
 RM = rm -f
-CFLAGS = -Wextra -Wall -Werror -g -fsanitize=address
+CFLAGS = -Wextra -Wall -Werror #-g -fsanitize=address
 LIBFT_FLAGS =  -L ./libft -lft
 MLX_FLAGS = -L ./mlx -lmlx -lm -framework OpenGL -framework AppKit
 

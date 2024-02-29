@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:37:30 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/29 15:56:08 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:50:52 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
@@ -27,6 +27,12 @@ static int	key_event(int key_code, t_fractol *f)
 		f->shift.y -= 0.5 * f->zoom;
 	if (key_code == DOWN_KEY)
 		f->shift.y += 0.5 * f->zoom;
+	if (key_code == R_KEY)
+		f->r *= 2;
+	if (key_code == G_KEY)
+		f->g *= 2;
+	if (key_code == B_KEY)
+		f->b *= 2;
 	render(f);
 	return (0);
 }
@@ -36,7 +42,15 @@ static int	mouse_event(int mouse_code, int x, int y, t_fractol *f)
 	if (mouse_code == ON_MOUSEDOWN)
 		f->zoom *= 1.1;
 	if (mouse_code == ON_MOUSEUP)
+	{
 		f->zoom *= 0.9;
+		x -= WIDTH / 2;
+		printf("%f  ", (double)x / WIDTH );
+		if (x > 0)
+			f->shift.x += (double)x / WIDTH / 2* f->zoom;
+		if (x < 0)
+			f->shift.x += (double)x / WIDTH / 2* f->zoom;	
+	}
 	render(f);
 	x = 0;
 	y = 0;
