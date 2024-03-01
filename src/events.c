@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:37:30 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/29 18:50:52 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/03/01 12:42:24 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
@@ -39,17 +39,20 @@ static int	key_event(int key_code, t_fractol *f)
 
 static int	mouse_event(int mouse_code, int x, int y, t_fractol *f)
 {
+	double	p_x;
+	double	p_y;
+	double	zoom_factor;
+
 	if (mouse_code == ON_MOUSEDOWN)
 		f->zoom *= 1.1;
 	if (mouse_code == ON_MOUSEUP)
 	{
-		f->zoom *= 0.9;
-		x -= WIDTH / 2;
-		printf("%f  ", (double)x / WIDTH );
-		if (x > 0)
-			f->shift.x += (double)x / WIDTH / 2* f->zoom;
-		if (x < 0)
-			f->shift.x += (double)x / WIDTH / 2* f->zoom;	
+		p_x = ((double)x * 4 / WIDTH - 2) * f->zoom + f->shift.x;
+		p_y = ((double)y * 4 / HEIGHT - 2) * f->zoom + f->shift.y;
+		zoom_factor = 0.9;
+		f->shift.x += (p_x) * (1 - zoom_factor);
+		f->shift.y += (p_y - f->shift.y) * (1 - zoom_factor);
+		f->zoom *= zoom_factor;
 	}
 	render(f);
 	x = 0;

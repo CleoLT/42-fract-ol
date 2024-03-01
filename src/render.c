@@ -6,16 +6,17 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:16:08 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/29 18:10:17 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/03/01 12:45:33 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
+
 static void	set_pixel_color(int y, int x, t_fractol *f, int color)
 {
 	int	first_byte_pixel;
 
 	first_byte_pixel = y * f->img_line + x * (f->img_bpp / 8);
-	f->img_addr[first_byte_pixel] =  color * f->r % 256;
+	f->img_addr[first_byte_pixel] = color * f->r % 256;
 	f->img_addr[first_byte_pixel + 1] = color * f->g % 256;
 	f->img_addr[first_byte_pixel + 2] = color * f->b % 256;
 }
