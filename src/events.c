@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:37:30 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/03/01 12:42:24 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:12:54 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/fractol.h"
@@ -43,20 +43,23 @@ static int	mouse_event(int mouse_code, int x, int y, t_fractol *f)
 	double	p_y;
 	double	zoom_factor;
 
+	p_x = ((double)x * 4 / WIDTH - 2) * f->zoom + f->shift.x;
+	p_y = ((double)y * 4 / HEIGHT - 2) * f->zoom + f->shift.y;
 	if (mouse_code == ON_MOUSEDOWN)
-		f->zoom *= 1.1;
+	{
+		zoom_factor = 1.1;
+		f->shift.x += (p_x - f->shift.x) * (1 - zoom_factor);
+		f->shift.y += (p_y - f->shift.y) * (1 - zoom_factor);
+		f->zoom *= zoom_factor;
+	}
 	if (mouse_code == ON_MOUSEUP)
 	{
-		p_x = ((double)x * 4 / WIDTH - 2) * f->zoom + f->shift.x;
-		p_y = ((double)y * 4 / HEIGHT - 2) * f->zoom + f->shift.y;
 		zoom_factor = 0.9;
-		f->shift.x += (p_x) * (1 - zoom_factor);
+		f->shift.x += (p_x - f->shift.x) * (1 - zoom_factor);
 		f->shift.y += (p_y - f->shift.y) * (1 - zoom_factor);
 		f->zoom *= zoom_factor;
 	}
 	render(f);
-	x = 0;
-	y = 0;
 	return (0);
 }
 
